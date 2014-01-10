@@ -2,8 +2,9 @@
 #include <float.h>
 #include <time.h>
 #include <stdlib.h>
+#include <stdio.h>
 
-#define MAX_KEY 256
+#define MAX_KEY 255
 
 void parent_func()
 {
@@ -53,7 +54,7 @@ void myMapOneLine(void)
 
 	scanf("%d", &value);
 	srand(time(NULL));
-	key = rand() % MAX_KEY;
+	key = (rand() % MAX_KEY) + 1;
 
 	min_val = (value < min_val) ? value: min_val;
 	max_val = (value > max_val) ? value: max_val;
@@ -86,8 +87,8 @@ void myMapLines(void)
 				break;
 			// process val here
 
-			min_val = (value < min_val) ? value: min_val;
-			max_val = (value > max_val) ? value: max_val;
+			min_val = (val < min_val) ? val: min_val;
+			max_val = (val > max_val) ? val: max_val;
 
 		}
 		srand(time(NULL));
