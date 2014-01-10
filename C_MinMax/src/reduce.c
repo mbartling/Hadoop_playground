@@ -1,8 +1,10 @@
 /*
- * collect.c
+ * reduce.c
  *
- *  Created on: Jan 1, 2014
+ *  Created on: Jan 9, 2014
  *      Author: Mike
+ *
+ *      Essentially the same thing as the collect function
  */
 
 
@@ -19,7 +21,7 @@ enum
 	key_min
 };
 
-void myCollectLines(void)
+void myReduceLines(void)
 {
 
 	int32_t key;
@@ -69,5 +71,5 @@ void myCollectLines(void)
 
 void main(void)
 {
-	myCollectLines();
+	myReduceLines();
 }
