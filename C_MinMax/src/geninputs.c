@@ -4,6 +4,8 @@
 
 #define NUMLINES 1000
 #define NUM_ENTRY_LINE 10
+
+
 int main()
 {
     int number;
