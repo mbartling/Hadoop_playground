@@ -5,7 +5,7 @@
  *      Author: Mike
  */
 
-
+#include <stdio.h>
 #include <limits.h>
 #include <float.h>
 #include <time.h>
@@ -24,7 +24,7 @@ void myCollectLines(void)
 
 	int32_t key;
 	int32_t prev_key;
-	double val;
+
 	double min_val;
 	double max_val;
 
@@ -35,14 +35,14 @@ void myCollectLines(void)
 	local_min_val = DBL_MAX;
 	local_max_val = DBL_MIN;
 	prev_key = 0;
-	while (scanf("%d\t%f\t%f\n",&key, &min_val, &max_val) > 0)
+	while (scanf("%d\t%lf\t%lf\n",&key, &min_val, &max_val) > 0)
 	{
 
 		//If we have moved onto the next key set then do this
 		if( prev_key && prev_key != key)
 		{
-			printf("%d\t%f\n", key_max, max_val);
-			printf("%d\t%f\n", key_min, min_val);
+			printf("%d\t%lf\n", key_max, max_val);
+			printf("%d\t%lf\n", key_min, min_val);
 
 			/* Update to new key set */
 			prev_key = key;
@@ -61,13 +61,14 @@ void myCollectLines(void)
 
 	} /* End While */
 
-	printf("%d\t%f\n", key_max, max_val);
-	printf("%d\t%f\n", key_min, min_val);
+	printf("%d\t%lf\n", key_max, max_val);
+	printf("%d\t%lf\n", key_min, min_val);
 
 
 }// End myMapLines
 
-void main(void)
+int main(void)
 {
 	myCollectLines();
+	return 0;
 }

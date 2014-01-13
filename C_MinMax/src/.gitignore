@@ -1,2 +1,5 @@
 /geninputs
-/geninputs.o
+/*.o
+/myCollect
+/myMap
+/myReduce

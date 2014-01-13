@@ -9,7 +9,7 @@
 int main()
 {
     int number;
-    int maxnumber;
+
     int i,j;
     srand(time(NULL));
 

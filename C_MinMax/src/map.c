@@ -42,12 +42,13 @@ void myMapLines(void)
 		}
 		srand(time(NULL));
 		key = rand() % MAX_KEY;
-		printf("%d\t%f\t%f", key, min_val, max_val);
+		printf("%d\t%lf\t%lf", key, min_val, max_val);
 	}
 
 }// End myMapLines
 
-void main(void)
+int main(void)
 {
 	myMapLines();
+	return 0;
 }

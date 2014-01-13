@@ -4,23 +4,40 @@
 CC = gcc
 
 # Compiler Flags
-CFLAGS = -c -Wall
-
+#CFLAGS = -c -Wall
+CFLAGS = -Wall -o
 # Linker Flags
 LDFLAGS = 
 
 # Sources
-SOURCES = geninputs.c
+#SOURCES = geninputs.c
+#EXECUTABLE = geninputs
+#SOURCES = reduce.c
+#EXECUTABLE = myReduce
+#SOURCES = map.c
+#EXECUTABLE = myMap
+#SOURCES = collect.c
+#EXECUTABLE = myCollect
+EXECUTABLES = myCollect geninputs myReduce myMap
+
 OBJECTS = $(SOURCES:.c=.o)
 
-EXECUTABLE = geninputs
+all: $(EXECUTABLES)
 
-all: $(SOURCES) $(EXECUTABLE)
-
-$(EXECUTABLE): $(OBJECTS)
-	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
+myCollect:
+	$(CC) $(CFLAGS) myCollect collect.c
+geninputs:
+	$(CC) $(CFLAGS) geninputs geninputs.c
+myReduce:
+	$(CC) $(CFLAGS) myReduce reduce.c
+myMap:
+	$(CC) $(CFLAGS) myMap map.c
 	
-.c.o:
-	$(CC) $(CFLAGS) $< -o $@
+#$(EXECUTABLE): $(OBJECTS)
+#	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
+	
+#.c.o:
+#	$(CC) $(CFLAGS) $< -o $@
 # clean
-clean: rm -rf *o 
+clean: 
+	rm -rf *.o $(EXECUTABLES)
