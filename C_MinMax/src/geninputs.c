@@ -18,12 +18,15 @@ int main()
 
     for(i = 0; i < NUMLINES; i++)
     {
-        for(j = 1; j<NUM_ENTRY_LINE; j++)
+        for(j = 1; j<NUM_ENTRY_LINE-1; j++)
         {
 
             number = rand();
             fprintf(fp, "%d ", number);
         }
+        number = rand();
+        fprintf(fp, "%d", number);
+
         fprintf(fp,"\n");
     }
 

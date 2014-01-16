@@ -18,7 +18,7 @@
 void myMapLines(void)
 {
 	char line[1024], *pos, *end;
-	int32_t key;
+	int key;
 	double val;
 	double min_val;
 	double max_val;
@@ -40,15 +40,16 @@ void myMapLines(void)
 			max_val = (val > max_val) ? val: max_val;
 
 		}
-		srand(time(NULL));
-		key = rand() % MAX_KEY;
-		printf("%d\t%lf\t%lf", key, min_val, max_val);
+
+		key = (rand() % MAX_KEY) + 1;
+		printf("%d\t%lf\t%lf\n", key, min_val, max_val);
 	}
 
 }// End myMapLines
 
 int main(void)
 {
+	srand(time(NULL));
 	myMapLines();
 	return 0;
 }

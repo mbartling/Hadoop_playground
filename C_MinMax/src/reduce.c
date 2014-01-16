@@ -17,7 +17,7 @@
 
 enum
 {
-	key_max,
+	key_max=1,
 	key_min
 };
 
@@ -29,7 +29,7 @@ void myReduceLines(void)
 
 	double min_val;
 	double max_val;
-
+	double val;
 	double local_max_val;
 	double local_min_val;
 
@@ -37,19 +37,25 @@ void myReduceLines(void)
 	local_min_val = DBL_MAX;
 	local_max_val = DBL_MIN;
 	prev_key = 0;
-	while (scanf("%d\t%lf\t%lf\n",&key, &min_val, &max_val) > 0)
+	while (scanf("%d\t%lf\n",&key, &val) > 0)
 	{
 
 		//If we have moved onto the next key set then do this
 		if( prev_key && prev_key != key)
 		{
-			printf("%d\t%lf\n", key_max, max_val);
-			printf("%d\t%lf\n", key_min, min_val);
+//			if(prev_key == key_max)
+//			{
+//				printf("Max\t%lf\n", max_val);
+//			}
+//			else
+//			{
+//				printf("Min\t%lf\n", min_val);
+//			}
 
 			/* Update to new key set */
 			prev_key = key;
-			local_max_val = max_val;
-			local_min_val = min_val;
+			local_min_val 	= (val < local_min_val) ? val: local_min_val;
+			local_max_val 	= (val > local_max_val) ? val: local_max_val;
 
 		}
 		else /* We have the first key set or are processing the same key set*/
@@ -57,14 +63,16 @@ void myReduceLines(void)
 
 			/* Process each line separately */
 			prev_key 		= key;
-			local_min_val 	= (min_val < local_min_val) ? min_val: local_min_val;
-			local_max_val 	= (max_val > local_max_val) ? max_val: local_max_val;
+			local_min_val 	= (val < local_min_val) ? val: local_min_val;
+			local_max_val 	= (val > local_max_val) ? val: local_max_val;
 		} /* End Else*/
 
 	} /* End While */
 
-	printf("%d\t%lf\n", key_max, max_val);
-	printf("%d\t%lf\n", key_min, min_val);
+	printf("Max\t%lf\n", local_max_val);
+	printf("Min\t%lf\n", local_min_val);
+//	printf("%d\t%lf\n", key_max, max_val);
+//	printf("%d\t%lf\n", key_min, min_val);
 
 
 }// End myMapLines
