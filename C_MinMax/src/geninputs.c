@@ -5,33 +5,55 @@
 #define NUMLINES 1000
 #define NUM_ENTRY_LINE 10
 
-
-int main()
+int main(int argc, char**argv)
 {
-    int number;
+	int number;
+	int numLines;
+	int i,j;
+	srand(time(NULL));
+	//    scanf("%d",&numLines);
+	if(argc == 2)
+	{
+		if(sscanf(argv[1],"%d",&numLines) < 1)
+		{
+			return -1;
+		}
 
-    int i,j;
-    srand(time(NULL));
+		for(i = 0; i < numLines; i++)
+		{
+			for(j = 1; j<NUM_ENTRY_LINE-1; j++)
+			{
 
-    FILE * fp;
-    fp = fopen("file01", "w");
+				number = rand();
+				printf("%d ", number);
+			}
+			number = rand();
+			printf("%d", number);
 
-    for(i = 0; i < NUMLINES; i++)
-    {
-        for(j = 1; j<NUM_ENTRY_LINE-1; j++)
-        {
+			printf("\n");
+		}
+	}
+	else
+	{
+		FILE * fp;
+		fp = fopen("file01", "w");
 
-            number = rand();
-            fprintf(fp, "%d ", number);
-        }
-        number = rand();
-        fprintf(fp, "%d", number);
+		for(i = 0; i < NUMLINES; i++)
+		{
+			for(j = 1; j<NUM_ENTRY_LINE-1; j++)
+			{
 
-        fprintf(fp,"\n");
-    }
+				number = rand();
+				fprintf(fp, "%d ", number);
+			}
+			number = rand();
+			fprintf(fp, "%d", number);
+
+			fprintf(fp,"\n");
+		}
 
 
-    fclose(fp);
-
-    return 0;
+		fclose(fp);
+	}
+	return 0;
 }
