@@ -10,15 +10,8 @@ CFLAGS = -Wall -o
 LDFLAGS = 
 
 # Sources
-#SOURCES = geninputs.c
-#EXECUTABLE = geninputs
-#SOURCES = reduce.c
-#EXECUTABLE = myReduce
-#SOURCES = map.c
-#EXECUTABLE = myMap
-#SOURCES = collect.c
-#EXECUTABLE = myCollect
-EXECUTABLES = myCollect geninputs myReduce myMap
+
+EXECUTABLES = myCollect geninputs myReduce myMap mySimpleCollect mySimpleMap
 
 OBJECTS = $(SOURCES:.c=.o)
 
@@ -32,7 +25,11 @@ myReduce:
 	$(CC) $(CFLAGS) myReduce reduce.c
 myMap:
 	$(CC) $(CFLAGS) myMap map.c
-	
+
+mySimpleCollect:
+	$(CC) $(CFLAGS) mySimpleCollect collect_simple.c
+mySimpleMap:
+	$(CC) $(CFLAGS) mySimpleMap map_simple.c	
 #$(EXECUTABLE): $(OBJECTS)
 #	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
 	

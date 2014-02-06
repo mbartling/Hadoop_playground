@@ -49,29 +49,28 @@ void myCollectLines(void)
 	{
 
 		//If we have moved onto the next key set then do this
-		if( prev_key && prev_key != key)
-		{
-//			printf("%d\t%lf\n", key_max, local_max_val);
-//			printf("%d\t%lf\n", key_min, local_min_val);
-
-			/* Update to new key set */
-			prev_key = key;
-			PRINTF("=====================\n");
-			PRINTF("lmin:%lf\tlmax:%lf\tmin:%lf\tmax:%lf\n", local_min_val, local_max_val, min_val, max_val);
-//			local_min_val 	= min_val ;
-//			local_max_val 	= max_val ;
-
-		}
-		else /* We have the first key set or are processing the same key set*/
-		{
+//		if( prev_key && prev_key != key)
+//		{
+//			// Do not want to print out the values here, will wait until done with both keys (min and max)
+//
+//			/* Update to new key set */
+//			prev_key = key;
+//			PRINTF("=====================\n");
+//			PRINTF("lmin:%lf\tlmax:%lf\tval:%lf\n", local_min_val, local_max_val, val );
+//
+//
+//
+//		}
+//		else /* We have the first key set or are processing the same key set*/
+//		{
 
 			/* Process each line separately */
-			prev_key 		= key;
+//			prev_key 		= key;
 			PRINTF("=====================\n");
-			PRINTF("lmin:%lf\tlmax:%lf\tmin:%lf\tmax:%lf\n", local_min_val, local_max_val, min_val, max_val);
-			local_min_val 	= (min_val < local_min_val) ? min_val: local_min_val;
-			local_max_val 	= (max_val > local_max_val) ? max_val: local_max_val;
-		} /* End Else*/
+			PRINTF("lmin:%lf\tlmax:%lf\tVal:%lf\n", local_min_val, local_max_val, val);
+			local_min_val 	= (val < local_min_val) ? val: local_min_val;
+			local_max_val 	= (val > local_max_val) ? val: local_max_val;
+//		} /* End Else*/
 
 	} /* End While */
 
