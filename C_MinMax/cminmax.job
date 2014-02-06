@@ -116,12 +116,12 @@ echo "##### Running C Min Max"
 hadoop jar $CMINMAX \
 	-input $TAMUSC_USER_WORK_DIR/inputs \
 	-output $TAMUSC_USER_WORK_DIR/outputs \
-	-mapper myMap \
-	-combiner myCollect \
+	-mapper mySimpleMap \
+	-combiner mySimpleCollect \
 	-reducer myReduce \
     -file src/myMap \
-    -file src/myCollect \
-    -file src/myReduce
+    -file src/mySimpleCollect \
+    -file src/mySimpleReduce
 
 echo "##### Finished running MapReduce job"
 
