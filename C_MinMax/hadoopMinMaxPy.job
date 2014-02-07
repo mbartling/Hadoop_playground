@@ -118,10 +118,8 @@ hadoop jar $CMINMAX \
 	-input $TAMUSC_USER_WORK_DIR/inputs \
 	-output $TAMUSC_USER_WORK_DIR/outputs \
 	-mapper map.py \
-	# -combiner mySimpleCollect \
 	-reducer reduce.py \
     -file src/map.py \
-    # -file src/mySimpleCollect \
     -file src/reduce.py
 
 echo "##### Finished running MapReduce job"
