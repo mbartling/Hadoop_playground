@@ -21,69 +21,82 @@ void emit_word(char *line);
 extern int errno;
 int main(int argc, const char * argv[])
 {
-	char line[MAX_LINE_LEN];
+    char line[MAX_LINE_LEN];
 
-	ReadLines();
-	//emit_word( line );
+    ReadLines();
+    //emit_word( line );
 
-	//return 0;
+    //return 0;
 
-	exit(EXIT_SUCCESS);
+    exit(EXIT_SUCCESS);
 }
 
 
 void ReadLines( void )
 {
-	char line[MAX_LINE_LEN];
-	char word[MAX_LINE_LEN];
-	int n = 0;
-	int idx = 0;
+    char line[MAX_LINE_LEN];
+    char word[MAX_LINE_LEN];
+    char *result;
+    int n = 0;
+    int idx = 0;
 
-	fgets(line, MAX_LINE_LEN, stdin);
+    //fgets(line, MAX_LINE_LEN, stdin);
+    while((result = fgets(line, MAX_LINE_LEN, stdin)) != NULL)
+    {
+        if(ferror(stdin))
+        {
+            perror("Error reading stdin.");
+        }
+        while( sscanf(&line[idx] , "%s%n", word, &n) > 0)
+        {
+            idx += n;
+            printf("%s\t%d\n",word, 1);
+        }
+        idx = 0;
+    }
+    if(ferror(stdin))
+    {
+        perror("Error reading stdin.");
+    }
 
-	while( sscanf(&line[idx] , "%s%n", word, &n) > 0)
-	{
-		idx += n;
-		printf("%s\t%d\n",word, 1);
-	}
 
 }
 
 void emit_word( char *line)
 {
-	int num_words;
-	int in_word;
-	char word[MAX_LINE_LEN];
+    int num_words;
+    int in_word;
+    char word[MAX_LINE_LEN];
 
-	char *word_ptr;
-	word_ptr = &word[0];
+    char *word_ptr;
+    word_ptr = &word[0];
 
-	num_words = 0;
-	in_word = 0;
+    num_words = 0;
+    in_word = 0;
 
-	while( *line != ZERO_BYTE )
-	{
-		if( !isspace( *line ) )
-		{
-			*word_ptr++ = *line;
+    while( *line != ZERO_BYTE )
+    {
+        if( !isspace( *line ) )
+        {
+            *word_ptr++ = *line;
 
-//			if( !in_word )
-//			{
-//				num_words++;
-//				in_word = 1;
-//
-//			} //End if !in_word
-		}//end if not space
-		else
-		{
-			*word_ptr = 0; //set null char
-			word_ptr = word; //go to beginning
-			printf("%s\t1\n", word); //emit
-//			in_word = 0;
-		}
-		line++;
-	}
+            //			if( !in_word )
+            //			{
+            //				num_words++;
+            //				in_word = 1;
+            //
+            //			} //End if !in_word
+        }//end if not space
+        else
+        {
+            *word_ptr = 0; //set null char
+            word_ptr = word; //go to beginning
+            printf("%s\t1\n", word); //emit
+            //			in_word = 0;
+        }
+        line++;
+    }
 
-//	return num_words;
+    //	return num_words;
 }
 
