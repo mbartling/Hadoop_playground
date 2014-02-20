@@ -6,7 +6,6 @@
  */
 
 #include <stdio.h>
-#include <cstdint>
 #include <ctype.h>
 #include <stdbool.h>
 #include <errno.h>
@@ -16,7 +15,7 @@
 #define MAX_LINE_LEN 	200
 #define ZERO_BYTE 		0
 
-void ReadLine(char *line);
+void ReadLines(void);
 void emit_word(char *line);
 
 extern int errno;
@@ -24,7 +23,7 @@ int main(int argc, const char * argv[])
 {
 	char line[MAX_LINE_LEN];
 
-	ReadLine();
+	ReadLines();
 	//emit_word( line );
 
 	//return 0;
