@@ -9,6 +9,9 @@
 #include <cstdint>
 #include <ctype.h>
 #include <stdbool.h>
+#include <errno.h>
+#include <stdlib.h>
+#include <string.h>
 
 #define MAX_LINE_LEN 	200
 #define ZERO_BYTE 		0
@@ -16,30 +19,34 @@
 void ReadLine(char *line);
 void emit_word(char *line);
 
+extern int errno;
 int main(int argc, const char * argv[])
 {
 	char line[MAX_LINE_LEN];
 
-	ReadLine( line );
-	emit_word( line );
+	ReadLine();
+	//emit_word( line );
 
-	return 0;
+	//return 0;
+
+	exit(EXIT_SUCCESS);
 }
 
-void ReadLine( char * line)
+
+void ReadLines( void )
 {
+	char line[MAX_LINE_LEN];
+	char word[MAX_LINE_LEN];
+	int n = 0;
+	int idx = 0;
 
-	int num_chars_read;
+	fgets(line, MAX_LINE_LEN, stdin);
 
-	num_chars_read = 0;
-
-	while( ( *line = getchar() ) != '\n' )
+	while( sscanf(&line[idx] , "%s%n", word, &n) > 0)
 	{
-		line++;
-		if( ++num_chars_read >= MAX_LINE_LEN ) break;
+		idx += n;
+		printf("%s\t%d\n",word, 1);
 	}
-	//*line = NULL;
-	*line = ZERO_BYTE;
 
 }
 
@@ -80,3 +87,4 @@ void emit_word( char *line)
 
 //	return num_words;
 }
+
