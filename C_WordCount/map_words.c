@@ -47,6 +47,15 @@ void ReadLines( void )
         {
             perror("Error reading stdin.");
         }
+        while(line[idx])
+        {
+            if(ispunct(line[idx]) || isdigit(line[idx]))
+            {
+                line[idx] = ' ';
+            }
+            idx++;
+        }
+        idx = 0;
         while( sscanf(&line[idx] , "%s%n", word, &n) > 0)
         {
             idx += n;
@@ -58,6 +67,8 @@ void ReadLines( void )
     {
         perror("Error reading stdin.");
     }
+
+
 
 
 }
