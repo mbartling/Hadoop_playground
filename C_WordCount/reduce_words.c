@@ -47,28 +47,21 @@ void ReadLines( void )
         {
             //if(prev_word)
             //printf("%s\t%d\n",word,n);
-            if(strcmp(prev_word,word) != 0)
+            if(strcmp(prev_word,word) == 0)
             {
-                printf("new key ");
-                if(word_count == 0)
-                {
-                    strcpy(prev_word,word);
-                    word_count += n;
-                }
-                else
+                word_count += n;
+            }else
+            {
+                if(word_count != 0)
                 {
                     printf("%s\t%d\n",prev_word,word_count);
-                    strcpy(prev_word,word);
-                    word_count = 0;
                 }
-            }// words not equivalent
-            else
-            {
-                printf(" Up ");
-                word_count += n;
-            }
+                    strcpy(prev_word,word);
+                    word_count = n;
+            }// end else words not equivalent
         }
     }
+        printf("%s\t%d\n",prev_word,word_count);
     if(ferror(stdin))
     {
         perror("Error reading stdin.");
