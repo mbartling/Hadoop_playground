@@ -49,6 +49,7 @@ void ReadLines( void )
         }
         while(line[idx])
         {
+            line[idx] = tolower(line[idx]);
             if(ispunct(line[idx]) || isdigit(line[idx]))
             {
                 line[idx] = ' ';
