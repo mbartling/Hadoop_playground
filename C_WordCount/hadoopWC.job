@@ -108,7 +108,7 @@ hadoop dfs -mkdir $TAMUSC_USER_WORK_DIR/inputs
 # cd $SCRATCH
 cd $PBS_O_WORKDIR # change directory to where we started
 #hadoop fs -put ./inputs/file01 $HDFS_URL/inputs/.
-hadoop dfs -copyFromLocal ./inputs/*.* $TAMUSC_USER_WORK_DIR/
+hadoop fs -copyFromLocal ./inputs/*.* $TAMUSC_USER_WORK_DIR/inputs
 
 echo "##### Running C Min Max"
 # Note, the  -file command lets us package the executables and send 
