@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+<configuration>
+  <property>
+    <name>fs.default.name</name>
+    <value>hdfs://localhost:9000</value>
+  </property>
+</configuration>
+</configuration>
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+<configuration>
+  <property>
+    <name>dfs.replication</name>
+    <value>2</value>
+  </property>
+  <property>
+    <name>dfs.data.dir</name>
+    <value>/work/USERNAME/data</value>
+  </property>
+<property>
+    <name>dfs.name.dir</name>
+    <value>/work/USERNAME/name</value>
+</property>
+</configuration>
+</configuration>
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+<configuration>
+  <property>
+    <name>mapred.job.tracker</name>
+    <value>localhost:9001</value>
+  </property>
+  <property>
+    <name>mapred.tasktracker.map.tasks.maximum</name>
+    <value>8</value>
+  </property>
+  <property>
+    <name>mapred.tasktracker.reduce.tasks.maximum</name>
+    <value>8</value>
+  </property>
+  <property>
+     <name>mapred.local.dir</name>
+     <value>/work/USERNAME/local</value>
+  </property>
+  <property>
+     <name>mapred.system.dir</name>
+     <value>/work/USERNAME/system</value>
+  </property>
+  <property>
+     <name>mapred.task.timeout</name>
+     <value>600000</value>
+  </property>
+
+</configuration>
+</configuration>
