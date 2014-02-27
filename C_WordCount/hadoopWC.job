@@ -120,14 +120,6 @@ echo "##### Running C Min Max"
 # Note, the  -file command lets us package the executables and send 
 # them to the hadoop cluster (can also do this with files
 
-#hadoop jar $HADOOP_STREAMING \
-#	-mapper "./map.out" \
-#	-reducer "./reduce.out" \
-#    -file map.out \
-#    -file reduce.out \
-#    -input $TAMUSC_USER_WORK_DIR/inputs/ \
-#	-output $TAMUSC_USER_WORK_DIR/outputs/
-
 # Verify that the Map is working correctly, outputs should have multiple parts with the desired map output
 # Success
 hadoop jar $HADOOP_STREAMING \
@@ -136,8 +128,21 @@ hadoop jar $HADOOP_STREAMING \
     -file map.out \
     -file reduce.out \
     -input $TAMUSC_USER_WORK_DIR/inputs/ \
-	-output $TAMUSC_USER_WORK_DIR/outputs/
+	-output $TAMUSC_USER_WORK_DIR/outputs/maponly
 echo "##### Finished running MapReduce job"
+
+echo "##### Copying Map outputs from $HDFS_URL ($TAMUSC_USER_WORK_DIR) to $PBS_O_WORKDIR"
+hadoop fs -get $TAMUSC_USER_WORK_DIR/outputs/maponly $PBS_O_WORKDIR/outputs/map_outputs
+
+
+hadoop jar $HADOOP_STREAMING \
+	-mapper "./map.out" \
+	-reducer "./reduce.out" \
+    -file map.out \
+    -file reduce.out \
+    -verbose \
+    -input $TAMUSC_USER_WORK_DIR/inputs/ \
+	-output $TAMUSC_USER_WORK_DIR/outputs/reduceonly
 
 # example of examining files on HDFS
 echo "##### Files on $HDFS_URL"
@@ -148,7 +153,7 @@ hadoop fs -lsr $HDFS_URL
 echo "##### Copying files from $HDFS_URL ($TAMUSC_USER_WORK_DIR) to $PBS_O_WORKDIR"
 mkdir -p outputs
 hadoop fs -get /`basename $0` $PBS_O_WORKDIR/outputs # get job script we copied earlier
-hadoop fs -get $TAMUSC_USER_WORK_DIR/outputs $PBS_O_WORKDIR
+hadoop fs -get $TAMUSC_USER_WORK_DIR/outputs/reduceonly $PBS_O_WORKDIR/outputs/reduceonly
 if [ $INTERACTIVE -eq 1 ] ; then # pause here until user ends VNC
   hold-hadoop-vnc-here.sh
 fi
