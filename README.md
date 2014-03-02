@@ -13,12 +13,12 @@ once with reduce and no map, and once with both map and reduce. This can be acco
 
 For example, to run streaming with no reduce:
 
-hadoop jar $HADOOP_STREAMING \
-	-mapper "./map.out" \
-	-reducer NONE \
-    -file map.out \
-    -input $TAMUSC_USER_WORK_DIR/inputs/ \
-	-output $TAMUSC_USER_WORK_DIR/outputs/maponly 
+	hadoop jar $HADOOP_STREAMING \
+		-mapper "./map.out" \
+		-reducer NONE \
+    	-file map.out \
+    	-input $TAMUSC_USER_WORK_DIR/inputs/ \
+		-output $TAMUSC_USER_WORK_DIR/outputs/maponly 
 
 
 **Note** By running this code with a C-based word count program, I found that Map generally outputs 8 files 
