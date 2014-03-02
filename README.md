@@ -30,6 +30,9 @@ I found that using _hadoop -fs get_ does not overwrite files if they exist in th
 
 The Quick Fix for this issue with Hadoop fs -get/put is to always target a unique directory. For example, I used target folders with some form of **$PBS_JOBID** written in them (since the EOS PBS system gives us unique Job ID's).
 
+http://sc.tamu.edu/help/eos/batch/
+
+
 ### More Advanced Debugging
 
 According to the Hadoop Wiki, it should be possible to run _Clean-up_ scripts if either map and/or reduce fails. More information can be found at http://wiki.apache.org/hadoop/HowToDebugMapReducePrograms. 
