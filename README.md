@@ -9,7 +9,7 @@ General Hadoop Tips on EOS
 
 ### Debugging Map and Reduce Separately
 
-By default, the EOS system discards the Map-stage outputs automatically after Map-Reduce completes. Unfortunately, this makes it difficult to debug Hadoop Streaming programs. An easy way around this is to run the MR method 3 times, once with map and no reduce, once with reduce and no map, and once with both map and reduce. This can be accomplished using
+By default, the EOS system discards the Map-stage outputs automatically after Map-Reduce completes. Unfortunately, this makes it difficult to debug Hadoop Streaming programs. An easy way around this is to run the MR method 3 times, once with map and no reduce, once with reduce and no map, and once with both map and reduce. 
 
 For example, to run streaming with no reduce:
 
