@@ -1,0 +1,10 @@
+write a map-reduce dummy which dumps the environment variables from within hadoop to my setup.
+
+map will run env and then dump it to a single 
+then look at output directory after the fact to see that the subsitutions actually took place.
+
+google Profiling hadoop
+
+
+http://www.cs.duke.edu/starfish/tutorial/profile.html
+email jack and ask about georges status

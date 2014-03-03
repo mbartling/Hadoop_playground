@@ -106,7 +106,8 @@ hadoop fs -mkdir $TAMUSC_USER_WORK_DIR/inputs
 # TODO
 cd $SCRATCH
 #hadoop fs -put ./inputs/file01 $HDFS_URL/inputs/.
-hadoop fs -put ./inputs/file01 $TAMUSC_USER_WORK_DIR/inputs/.
+#hadoop fs -put ./inputs/file01 $TAMUSC_USER_WORK_DIR/inputs/.
+hadoop fs -copyFromLocal ./inputs/*.* $TAMUSC_USER_WORK_DIR/inputs
 
 cd $PBS_O_WORKDIR # change directory to where we started
 echo "##### Running C Min Max"
@@ -114,14 +115,12 @@ echo "##### Running C Min Max"
 # them to the hadoop cluster (can also do this with files
 
 hadoop jar $CMINMAX \
-	-input $TAMUSC_USER_WORK_DIR/inputs \
-	-output $TAMUSC_USER_WORK_DIR/outputs \
-	-mapper mySimpleMap \
-	# -combiner mySimpleCollect \
-	-reducer myReduce \
+	-mapper "./mySimpleMap" \
+	-reducer "./myReduce" \
     -file src/myMap \
-    # -file src/mySimpleCollect \
-    -file src/myReduce
+    -file src/myReduce \
+	-input $TAMUSC_USER_WORK_DIR/inputs \
+	-output $TAMUSC_USER_WORK_DIR/outputs
 
 echo "##### Finished running MapReduce job"
 
@@ -133,8 +132,9 @@ hadoop fs -lsr $HDFS_URL
 # example of copying files off of HDFS
 echo "##### Copying files from $HDFS_URL ($TAMUSC_USER_WORK_DIR) to $PBS_O_WORKDIR"
 mkdir -p outputs
-hadoop fs -get /`basename $0` $PBS_O_WORKDIR/outputs # get job script we copied earlier
-hadoop fs -get $TAMUSC_USER_WORK_DIR/outputs $PBS_O_WORKDIR/outputs
+hadoop fs -get /`basename $0` $PBS_O_WORKDIR/outputs/$PBS_JOBID # get job script we copied earlier
+hadoop fs -get $TAMUSC_USER_WORK_DIR/outputs $PBS_O_WORKDIR/outputs/$PBS_JOBID
+
 if [ $INTERACTIVE -eq 1 ] ; then # pause here until user ends VNC
   hold-hadoop-vnc-here.sh
 fi

@@ -132,7 +132,7 @@ hadoop jar $HADOOP_STREAMING \
 echo "##### Finished running MapReduce job"
 
 echo "##### Copying Map outputs from $HDFS_URL ($TAMUSC_USER_WORK_DIR) to $PBS_O_WORKDIR"
-hadoop fs -get $TAMUSC_USER_WORK_DIR/outputs/maponly $PBS_O_WORKDIR/outputs/map_outputs
+hadoop fs -get $TAMUSC_USER_WORK_DIR/outputs/maponly $PBS_O_WORKDIR/outputs/$PBS_JOBID/map_outputs
 
 
 hadoop jar $HADOOP_STREAMING \
@@ -152,8 +152,8 @@ hadoop fs -lsr $HDFS_URL
 # example of copying files off of HDFS
 echo "##### Copying files from $HDFS_URL ($TAMUSC_USER_WORK_DIR) to $PBS_O_WORKDIR"
 mkdir -p outputs
-hadoop fs -get /`basename $0` $PBS_O_WORKDIR/outputs # get job script we copied earlier
-hadoop fs -get $TAMUSC_USER_WORK_DIR/outputs/reduceonly $PBS_O_WORKDIR/outputs/reduceonly
+hadoop fs -get /`basename $0` $PBS_O_WORKDIR/outputs/$PBS_JOBID # get job script we copied earlier
+hadoop fs -get $TAMUSC_USER_WORK_DIR/outputs/reduceonly $PBS_O_WORKDIR/outputs/$PBS_JOBID/reduce_outputs
 if [ $INTERACTIVE -eq 1 ] ; then # pause here until user ends VNC
   hold-hadoop-vnc-here.sh
 fi
