@@ -12,11 +12,19 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_LINE_LEN 	200
+#define MAX_LINE_LEN 	400
 #define ZERO_BYTE 		0
 
-void ReadLines(void);
+#define DEBUG_MODE 0
 
+#if DEBUG_MODE
+#define FPRINTF(...) fprintf(__VA_ARGS__)
+#else
+#define FPRINTF(...) /*Dummy*/
+#endif
+
+void ReadLines(void);
+void intersect_friends(char *, char *);
 extern int errno;
 int main(int argc, const char * argv[])
 {
@@ -37,15 +45,32 @@ void ReadLines( void )
     char outputs[MAX_LINE_LEN];
     char *result;
     int key_count = 0;
-
+    int idx;
     while((result = fgets(line, MAX_LINE_LEN, stdin)) != NULL)
     {
         if(ferror(stdin))
         {
             perror("Error reading stdin.");
         }
-        if( sscanf(line , "%s\t%s", key, friends) > 0)
+        while(line[idx])
         {
+            if(line[idx] == '\n')
+            {
+                line[idx] = ' ';
+            }
+            idx++;
+        }
+        idx = 0;
+
+        //if( sscanf(line , "%[^\t]s\t%[^\t\n\0]s", key, friends) > 0)
+        if( sscanf(line , "%[^\t]%n", key, &idx) > 0)
+        {
+            strcpy(friends, &line[idx]);
+            //fputs(key, stderr);
+            FPRINTF(stderr, "\tK: %s\n", key);
+            FPRINTF(stderr, "\tN: %d\n", idx);
+            FPRINTF(stderr, "\tFA: %s\n", friends);
+            //fputs(friends, stderr);
             if(strcmp(prev_key,key) == 0) //If Keys are equal
             {
                 key_count += 1;
@@ -55,7 +80,7 @@ void ReadLines( void )
             {
                 if(key_count != 0)
                 {
-                    strcat(outputs, prev_key);
+                    strcpy(outputs, prev_key);
                     strcat(outputs, "\t");
                     strcat(outputs, mutual_friends);
                     //printf("%s\t%d\n",prev_key,key_count);
@@ -67,7 +92,7 @@ void ReadLines( void )
             }// end else words not equivalent
         }
     }
-        printf("%s\t%d\n",prev_word,key_count);
+        //puts(outputs);
     if(ferror(stdin))
     {
         perror("Error reading stdin.");
@@ -82,13 +107,37 @@ void intersect_friends(char * str1, char * str2)
     char temp[MAX_LINE_LEN];
     char friend1[MAX_LINE_LEN];
     char friend2[MAX_LINE_LEN];
+
+    //char * str1 = &str1_b[0];
+    //char * str2 = &str2_b[0];
     int n1;
     int n2;
     int idx1 = 0;
     int idx2 = 0;
-    
+
     while(sscanf(&str1[idx1] ,"%s%n", friend1, &n1) > 0)
     {
-        
+       idx1 += n1;
+       idx2 = 0;
+
+       while(sscanf(&str2[idx2], "%s%n", friend2, &n2) > 0)
+       {
+            idx2 += n2;
+               // FPRINTF(stderr, "\tF1: %s\n",friend1);
+
+            if(strcmp(friend1, friend2) == 0)
+            {
+                strcat(temp, friend2);
+                strcat(temp, " ");
+
+                FPRINTF(stderr, "\tF2: %s\n",friend2);
+            }
+       }
+
     }
+    //puts(temp);
+    //Super Dangerous
+    FPRINTF(stderr, "\tT: %s\n",temp);
+    strcpy(str1, temp);
+    //memcpy(str1,temp, MAX_LINE_LEN);
 }

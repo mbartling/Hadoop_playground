@@ -20,7 +20,6 @@ void ReadLines(void);
 extern int errno;
 int main(int argc, const char * argv[])
 {
-    char line[MAX_LINE_LEN];
 
     ReadLines();
     //emit_friend( line );
@@ -51,15 +50,14 @@ void ReadLines( void )
             perror("Error reading stdin.");
         }
         /* Convert everything to lower case and remove any numbers */
-       // while(line[idx])
-       // {
-       //     line[idx] = tolower(line[idx]);
-       //     if(ispunct(line[idx]) || isdigit(line[idx]))
-       //     {
-       //         line[idx] = ' ';
-       //     }
-       //     idx++;
-       // }
+        while(line[idx])
+        {
+            if(line[idx] == '\n')
+            {
+                line[idx] = ' ';
+            }
+            idx++;
+        }
         idx = 0;
 
         /*Read in string and count number of characters read*/
@@ -69,13 +67,14 @@ void ReadLines( void )
         while( sscanf(&line[idx] , "%s%n", friend, &n) > 0)
         {
             //Clear the output string
-            memset(output, '\0', 2*MAX_LINE_LEN);
+            //memset(output, '\0', 2*MAX_LINE_LEN);
 
             idx += n;
             comparison = strcmp(key, friend);
             if( comparison > 0)
             {
-                strcat(output, friend);
+                //strcat(output, friend);
+                strcpy(output, friend);
                 strcat(output, " ");
                 strcat(output, key);
                 strcat(output, "\t");
@@ -84,7 +83,8 @@ void ReadLines( void )
             }
             if( comparison < 0)
             {
-                strcat(output, key);
+                //strcat(output, key);
+                strcpy(output, key);
                 strcat(output, " ");
                 strcat(output, friend);
                 strcat(output, "\t");
