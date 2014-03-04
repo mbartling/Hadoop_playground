@@ -8,3 +8,24 @@ google Profiling hadoop
 
 http://www.cs.duke.edu/starfish/tutorial/profile.html
 email jack and ask about georges status
+
+//3/3/2014
+Change the PBS script to clean output directory
+    verify empty and throw error "Cannot proceed directory not empty"
+        "Should I move to different directory whose name is old_dir_name.modtime?"
+
+    Explore the Map/reduce fail scripts.
+
+learn how to rename the output files, instead of Part-0000n etc
+
+asciidoc -> Readme points to rest of documentation (Current situation)
+
+add more Readme documentation
+
+Friends of friends <---
+STA
+FrogSAT
+
+Georges account
+
+Time-line 2 weeks
