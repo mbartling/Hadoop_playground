@@ -13,49 +13,22 @@ class person:
 
     def __repr__(self):
         return '{!r}'.format(self._name)
-#    def mystr(self):
-#        temp = []
-#        for thing in self._friends:
-#            temp.append('{!r}'.format(thing))
-#        self._friends = temp
-#        #return temp
+    
     def __str__(self):
         return '{!r}'.format(self._name)
+    
     def add_friend(self, friend):
         if friend not in self._friends:
             self._friends.append(friend)
-    #def __iter__(self):
-    #    return iter(self._friends)
     def depth_first(self):
         yield self
         for c in self:
             for cc in c.depth_first():
                 yield cc
-            #yield from c.depth_first()
     def printMe(self):
-        #if len(self._friends) > 1:
-        #if self._friends:
-        #print self._friends
-        #fList = ''
         if self._friends:
-            #fList = ' '.join("{!s}".format(self._friends))
             fList = ' '.join(self._friends)
-            #x = self._friends
-            #print type(x[1])
-            #fList = ' '.join(x)
-            #fList = str(self._friends)
-            #fList = fList.replace('[', ' ')
-            #fList = fList.replace(']', ' ')
-            #fList = fList.replace('\'', ' ')
-            #fList = fList.replace(' , ', ' ')
             print self._name + '\t' + fList
-        #if not self._friends:
-        #    self._friends.append(' ')
-        #fList = ' '
-        #fList.join(self._friends)
-        #print self._name + '\t' + fList
-        #else:
-        #    print self._name
 
 def make_friends(personA, personB):
     personA.add_friend(personB._name)
@@ -70,18 +43,17 @@ for name in sys.stdin:
 
 
 for i in range(0, MaxNumFriends):
-    #personA = random.choice(namelist)
     make_friends(random.choice(namelist), random.choice(namelist))
-    #A = random.choice(namelist)
-    #B = random.choice(namelist)
-    #make_friends(A._name, B._name)
 
 print namelist
 for people in namelist:
-    #people.mystr()
     people.printMe()
-    #print people._name
-    #print people._friends
+
+
+
+
+
+
 ## Note that I can treat these as a monoid structure of name and op
 #for name in namelist:
 #    #print name
