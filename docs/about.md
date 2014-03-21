@@ -2,7 +2,7 @@
 layout: index
 ---
 
-# Hadoop Playground Overview
+## Hadoop Playground Overview
 
 Michael Bartling
 Texas A&M ECE
