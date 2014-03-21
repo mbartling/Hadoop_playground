@@ -1,2 +1,3 @@
 markdown: redcarpet
+        autolink: true
 path: http://mbartling.github.io/Hadoop_playground/ 

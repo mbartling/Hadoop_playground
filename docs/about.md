@@ -1,5 +1,6 @@
 ---
 layout: index
+title: About Hadoop Playground
 ---
 
 ## Hadoop Playground Overview
