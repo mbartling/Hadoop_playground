@@ -46,3 +46,6 @@ http://srinathsview.blogspot.com/2012/05/debugging-hadoop-task-tracker-job.html
 I will play around with some of these scripts and post my findings soon.
 
 Something interesting I found (but have yet to try) is that the EOS PBS system lets us choose our std streams. I might be able to use this to create a named stderr stream for my C programs to write logs to. 
+
+### Links
+[1]: Documentation/about.md
