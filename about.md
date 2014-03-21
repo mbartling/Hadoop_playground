@@ -1,3 +1,7 @@
+---
+layout: index
+---
+
 # Hadoop Playground Overview
 
 Michael Bartling
