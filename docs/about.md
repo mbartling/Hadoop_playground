@@ -3,7 +3,7 @@ layout: index
 title: About Hadoop Playground
 ---
 
-[**Home**][../index.html]
+[**Home**][index.html]
 
 
 ## EE's Introduction
