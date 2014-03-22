@@ -1,13 +1,9 @@
 ---
-layout: index
+layout: post
+title: General Hadoop Tips on EOS
 ---
 
-Welcome to Hadoop playground!
-=================
-
-
-General Hadoop Tips on EOS
---------------------------
+## General Hadoop Tips on EOS
 
 ### Debugging Map and Reduce Separately
 
@@ -45,5 +41,9 @@ I will play around with some of these scripts and post my findings soon.
 
 Something interesting I found (but have yet to try) is that the EOS PBS system lets us choose our std streams. I might be able to use this to create a named stderr stream for my C programs to write logs to. 
 
+## Useful Links
 
-[1]: {{site.baseurl}}/docs/about.md
+- http://sc.tamu.edu/help/eos/batch/
+- http://srinathsview.blogspot.com/2012/05/debugging-hadoop-task-tracker-job.html
+- http://wiki.apache.org/hadoop/HowToDebugMapReducePrograms
+
