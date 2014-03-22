@@ -3,12 +3,12 @@ layout: index
 title: About Hadoop Playground
 ---
 
-[**Home**][index.html]
+[**Home**][1]
 
 
 ## EE's Introduction
 
-Hadoop Playground is meant to bootstrap new Hadoop users on a super computing cluster. For my research, I am required to run C-based map programs and reduce programs using the [Hadoop Streaming][http://hadoop.apache.org/docs/r1.2.1/streaming.html] interface. I am running these examples on the [Texas A&M EOS Super Computing Cluster][http://sc.tamu.edu/help/eos/sysinfo.php], but the concepts presented should be applicable to most Hadoop implementations. The tutorials are broken up into 3 case study MR examples (written in C) as well as sections on debugging tips and important caveats to running Hadoop programs on the TAMU EOS cluster. 
+Hadoop Playground is meant to bootstrap new Hadoop users on a super computing cluster. For my research, I am required to run C-based map programs and reduce programs using the [Hadoop Streaming][2] interface. I am running these examples on the [Texas A&M EOS Super Computing Cluster][3], but the concepts presented should be applicable to most Hadoop implementations. The tutorials are broken up into 3 case study MR examples (written in C) as well as sections on debugging tips and important caveats to running Hadoop programs on the TAMU EOS cluster. 
 
 ### Example 1: Word Count
 
@@ -28,3 +28,7 @@ Hi, my name is Michael Bartling! I'm currently an undergraduate senior studying 
 I'm constantly trying to improve my EE's Introduction to Hadoop, so if you have any comments or recommendations then feel free to email me at:
 
 michael.bartling15+HadoopPlayground@gmail.com
+
+[1]: index.md
+[2]: http://hadoop.apache.org/docs/r1.2.1/streaming.html
+[3]: http://sc.tamu.edu/help/eos/sysinfo.php
