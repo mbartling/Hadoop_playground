@@ -29,6 +29,6 @@ I'm constantly trying to improve my EE's Introduction to Hadoop, so if you have 
 
 michael.bartling15+HadoopPlayground@gmail.com
 
-[1]: index.md
+[1]: ../index.md
 [2]: http://hadoop.apache.org/docs/r1.2.1/streaming.html
 [3]: http://sc.tamu.edu/help/eos/sysinfo.php
