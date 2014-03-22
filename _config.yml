@@ -1,3 +1,6 @@
+safe: true
+lsi: false
+pygments: true
 markdown: redcarpet
         autolink: true
-path: http://mbartling.github.io/Hadoop_playground/ 
+path: http://mbartling.github.io/Hadoop_playground 
