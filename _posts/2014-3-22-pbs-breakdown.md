@@ -1,27 +1,15 @@
 ---
 layout: post
-title: Introduction to EOS Cluster
+title: Example PBS Breakdown, Hadoop C Wordcount on EOS
 ---
 
 ## Table of Contents
-- EOS Background
-- Running Super Computing Jobs using PBS
-- Hadoop on EOS
-- EOS Gotchas!
+- Introduction
+- PBS Reference
+- PBS Breakdown
 - Useful Links
 
-## Brief EOS Background
-
-[Eos][1] is a 3168-core IBM (iDataPlex) Linux cluster comprised of two different types of nodes: 324 are equiped with Nehalem and 48 with Westmere processors, both Intel products. Both implement 64-bit architectures and operate at 2.8GHz. The Nehalem is the quad-core X5550 processor, while the Westmere is the 6-core X5660. The Nehalem-based nodes are 2-socket 8-core SMP systems. Those equipped with Westmeres are 2-socket 12-core SMP's. Eos currently has 372 (324+48) nodes, all interconnected by a high-speed 4X Quad-Data Rate (QDR) Infiniband (IB) fabric. An IB link in the fabric supports full-duplex communication with bandwidth of 4GB/s in each direction. The interconnecting switch in this communication infrastructure is the Voltaire Grid Director 4700.
-
-
-The EOS system allocations are as follows
-
-Directory | Quota | Backed Up? | Enviornment Variable | Description
----------- | ------- | ------------ | ---------------------- | ------------
-**/g/home/$USER** | 1 GB | Yes | $HOME | Upon login, you will be situated in /g/home/$USER, where $USER is your logon name. Store smaller files such as your source code, executables, and input files. It is also the only area that will be backed up nightly.
-**/scratch/$USER** | 50 GB | No | $SCRATCH | This is a high performance filesystem, intended to temporarily hold rather large files for your current processing needs. It is not intended as long-term storage of any files.
-The $TMPDIR environment variable is also defined as /scratch/$USER/tmp.
+## Introduction
 
 ## PBS: Portable Batch Scripting
 
@@ -108,25 +96,46 @@ Command | Description
 **jrpt jobid** | Lists resource use information at the OS process level. An in-house command, it is useful in tracking the efficient (or inefficient) use of resources, especially for parallel jobs.The listed data is most accurate when jobs allocate whole nodes. Periodic use may also be required in order to obtain a realistic "sample" for the listed data. Important: To invoke jrpt in the form we show, you must first add the following command to your .bashrc control file on Eos: alias jrpt= **/g/software/PBSutils/jrpt/bin/jrpt** .
 
 
-## Getting Started: Hadoop on EOS
+## PBS Breakdown: C-Wordcount example
 
-To find information on EOS account requests as well as how to connect to EOS cluster, go [Here][3].
-
-### Example Hadoop PBS script
 The following is an example PBS script for the WordCount method in C.
-[C_WordCount/hadoopWC.job](https://github.com/mbartling/Hadoop_playground/blob/master/C_WordCount/hadoopWC.job)
+C_WordCount/hadoopWC.job
+https://github.com/mbartling/Hadoop_playground/blob/master/C_WordCount/hadoopWC.job
 
-## EOS Gotchas!
-
-Running a Hadoop on a cluster means we must have set up our public and private SSH keys. So if you find _invalid permission_ errors in your Hadoop logs, chances are you haven't initialized your SSH keys.
-
-To initialize SSH keys run the command `init-ssh` :
+### PBS Configuration
+As mentioned above, we will generally configure the Hadoop PBS scripts with
 
 ```
-user@eos> init-ssh
+# PBS settings
+#
+#  - nodes must be >= 2 (2 is best for interactive, larger jobs need batch mode)
+#  - ppn must be >= 8
+#  - mem should be == nodes X 20gb
+#  - walltime should be adjusted as needed
+#  - Hadoop requires the use of -W x=NACCESSPOLICY:SINGLEJOB
+
+#PBS -l nodes=2:ppn=8,mem=40gb,walltime=1:00:00
+#PBS -W x=NACCESSPOLICY:SINGLEJOB
+#PBS -N Hadoop_CWordCount
+#PBS -S /bin/bash
+#PBS -m abe
+#PBS -j oe
+#PBS -M michael.bartling15+PBS@gmail.com
+```
+### Batch mode vs Interactive mode
+
+We have to options for how we will run Hadoop on EOS:
+1. Batch Processing (Default)
+2. Interactive Mode
+
+```
+export INTERACTIVE=0  # 0 = batch mode ; 1 = interactive VNC session
 ```
 
-which should create the necessary files in your `~/.ssh` directory.
+For the most part, we will operate in Batch processing mode. Part of the reason for this is I have, so far, been unsuccessful in getting interactive mode to work ~~reliably~~.
+
+### The Meat of the PBS Script
+
 
 ## Useful links
 - [EOS: Basic Information][1]
