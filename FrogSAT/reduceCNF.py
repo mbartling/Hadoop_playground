@@ -7,14 +7,14 @@ clauseList = []
 
 WINDOWSMODE = 1
 
-def runMiniSat(filename):
+def runMiniSat(filename, filenameout):
     if WINDOWSMODE == 1:
         minisat = "./minisat_static.exe " 
-        minisat = minisat + filename + " -no-luby -rinc=1.5 -phase-saving=0 -rnd-freq=0.02"
+        minisat = minisat + filename + " " + filenameout + " -no-luby -rinc=1.5 -phase-saving=0 -rnd-freq=0.02"
         os.system(minisat)
     else:
         minisat = "./minisat_static " 
-        minisat = minisat + filename + " -no-luby -rinc=1.5 -phase-saving=0 -rnd-freq=0.02"
+        minisat = minisat + filename + " " + filenameout + " -no-luby -rinc=1.5 -phase-saving=0 -rnd-freq=0.02"
         os.system(minisat)
     
 
@@ -39,7 +39,7 @@ for line in sys.stdin:
     	numLits = len(literals)/2 # Should be even number
     	filenameTxt = prevKey.replace(' ', '-')
     	filename = '{0}.cnf'.format(filenameTxt)
-    	
+	filenameout = '{0}-MiniSat.out'.format(filenameTxt)    	
     	# Open the file to work on
     	f = open(filename, 'w')
 
@@ -59,7 +59,7 @@ for line in sys.stdin:
     	# Run the command line minisat here
     	print 'Running Minisat Dummy'
     	#os.system("cat " + filename+ ">" + '{0}.out'.format(filenameTxt))
-    	runMiniSat(filename)
+    	runMiniSat(filename, filenameout)
     	literals.clear()
     	clauseList = []
     	
@@ -77,7 +77,7 @@ for line in sys.stdin:
 numLits = len(literals)/2 # Should be even number
 filenameTxt = key.replace(' ', '-')
 filename = '{0}.cnf'.format(filenameTxt)
-
+filenameout = '{0}-MiniSat.out'.format(filenameTxt)    	
 # Open the file to work on
 f = open(filename, "w")
 
@@ -97,6 +97,6 @@ f.close()
 # Run the command line minisat here
 print 'Running Minisat Dummy'
 #os.system("cat " + filename+ ">" + '{0}.out'.format(filenameTxt))
-runMiniSat(filename)
+runMiniSat(filename, filenameout)
 literals.clear()
 clauseList = []
