@@ -6,7 +6,7 @@ literals = set()
 clauseList = []
 
 WINDOWSMODE = 1
-verbosity = 0
+verbosity = 2
 MSVERBOSITY = " -verb={0}".format(verbosity)
 def runMiniSat(filename, filenameout):
     if WINDOWSMODE == 1:
@@ -56,7 +56,7 @@ for line in sys.stdin:
     	# Write the clauses
     	#f.writelines(clauseList)
     	for entry in clauseList:
-    	    f.write('{0} 0\n'.format(entry))
+    	    f.write('{0}\n'.format(entry))
     	
     	f.close()
     	
@@ -95,7 +95,7 @@ f.write(problem)
 # Write the clauses
 #f.writelines(clauseList)
 for entry in clauseList:
-    f.write('{0} 0\n'.format(entry))
+    f.write('{0}\n'.format(entry))
     
 f.close()
 
