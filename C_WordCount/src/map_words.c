@@ -73,7 +73,8 @@ void ReadLines( void )
 
 
 }
-
+/* The below code is a simple example, but does not work*/
+/*
 void emit_word( char *line)
 {
     int num_words;
@@ -111,4 +112,4 @@ void emit_word( char *line)
 
     //	return num_words;
 }
-
+*/

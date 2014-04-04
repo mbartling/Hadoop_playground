@@ -42,7 +42,7 @@ for line in sys.stdin:
 	numLits = max(literals)
     	filenameTxt = prevKey.replace(' ', '-')
     	filename = '{0}.cnf'.format(filenameTxt)
-	filenameout = '{0}-MiniSat.out'.format(filenameTxt)    	
+        filenameout = '{0}-MiniSat.out'.format(filenameTxt)    	
     	# Open the file to work on
     	f = open(filename, 'w')
 
@@ -51,7 +51,7 @@ for line in sys.stdin:
     	#problem  = ('p cnf', numLits, len(clauseList), '\n')
     	problem = 'p cnf {0} {1}\n'.format(numLits, len(clauseList))
     	# MiniSAT doesnt need this, see www.msoos.org/minisat-faq/
-	f.write(problem)
+        f.write(problem)
 
     	# Write the clauses
     	#f.writelines(clauseList)
