@@ -29,6 +29,12 @@ OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWA
 #include "core/Dimacs.h"
 #include "core/Solver.h"
 
+#if DEBUGMODE
+#define PRINTF(...) printf(__VA_ARGS__)
+#else
+#define PRINTF(...) /*Dummy*/
+#endif /*Michael Edit*/
+
 using namespace Minisat;
 
 //=================================================================================================
@@ -77,7 +83,7 @@ int main(int argc, char** argv)
 #if defined(__linux__)
         fpu_control_t oldcw, newcw;
         _FPU_GETCW(oldcw); newcw = (oldcw & ~_FPU_EXTENDED) | _FPU_DOUBLE; _FPU_SETCW(newcw);
-        printf("WARNING: for repeatability, setting FPU to use double precision\n");
+        PRINTF("WARNING: for repeatability, setting FPU to use double precision\n");
 #endif
         // Extra options:
         //

@@ -45,7 +45,7 @@ for name in sys.stdin:
 for i in range(0, MaxNumFriends):
     make_friends(random.choice(namelist), random.choice(namelist))
 
-print namelist
+#print namelist
 for people in namelist:
     people.printMe()
 

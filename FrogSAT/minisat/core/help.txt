@@ -1,0 +1,1 @@
+export MROOT=/g/home/bart4128/Hadoop_playground/FrogSAT/minisat
