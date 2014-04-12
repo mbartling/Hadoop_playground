@@ -23,19 +23,19 @@
 #define FPRINTF(...) /*Dummy*/
 #endif
 
-void ReadLines(void);
+void myReduceLines(void);
 void intersect_friends(char *, char *);
 extern int errno;
 int main(int argc, const char * argv[])
 {
 
-    ReadLines();
+    myReduceLines();
 
     exit(EXIT_SUCCESS);
 }
 
 //http://www.daniweb.com/software-development/c/threads/206198/intersection-of-two-strings
-void ReadLines( void )
+void myReduceLines( void )
 {
     char line[MAX_LINE_LEN];
     char key[MAX_LINE_LEN];
