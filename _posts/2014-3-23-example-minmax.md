@@ -139,6 +139,9 @@ Results in:
 
 Now that we have a model working, we can either test our python code on the super computer or dive into the C method!
 
+To run this on the super computer follow the steps in 
+[Example PBS Breakdown](../22/pbs-breakdown.html)
+
 
 ## C Implementation
 
