@@ -15,13 +15,13 @@
 #define MAX_LINE_LEN 	200
 #define ZERO_BYTE 		0
 
-void ReadLines(void);
+void myMapLines(void);
 
 extern int errno;
 int main(int argc, const char * argv[])
 {
 
-    ReadLines();
+    myMapLines();
     //emit_friend( line );
 
     //return 0;
@@ -30,7 +30,7 @@ int main(int argc, const char * argv[])
 }
 
 
-void ReadLines( void )
+void myMapLines( void )
 {
     char line[MAX_LINE_LEN];
     char friend[MAX_LINE_LEN];
