@@ -47,6 +47,8 @@ void myReduceLines( void )
         {
             //if(prev_word)
             //printf("%s\t%d\n",word,n);
+            //if this is the same word as the last one then increment count
+            //Otherwise reset count
             if(strcmp(prev_word,word) == 0)
             {
                 word_count += n;
