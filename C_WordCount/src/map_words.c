@@ -15,7 +15,7 @@
 #define MAX_LINE_LEN 	200
 #define ZERO_BYTE 		0
 
-void ReadLines(void);
+void myMapLines(void);
 void emit_word(char *line);
 
 extern int errno;
@@ -23,7 +23,7 @@ int main(int argc, const char * argv[])
 {
     char line[MAX_LINE_LEN];
 
-    ReadLines();
+    myMapLines();
     //emit_word( line );
 
     //return 0;
@@ -32,7 +32,7 @@ int main(int argc, const char * argv[])
 }
 
 
-void ReadLines( void )
+void myMapLines( void )
 {
     char line[MAX_LINE_LEN];
     char word[MAX_LINE_LEN];
