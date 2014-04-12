@@ -375,14 +375,14 @@ $ gcc -Wall -o reduce reduce_words.c
 Run the functional tests like we did with python
 
 ```
-$ cat test_inputs.dat | ./map | sort -n | ./reduce
+$ cat hadoop_overview.txt | ./map | sort -n | ./reduce
 ```
 
 Compare the results, and then try running on the super computer!
 **Be SURE to modify the PBS script before running** i.e. `#PBS -M youremail.notmine.@gmail.com`
 
 ```
-$ qsub cminmax.job
+$ qsub hadoopWC.job
 ```
 
 After you get the email confirming job completion, check the outputs directory for successful results.
@@ -391,5 +391,6 @@ After you get the email confirming job completion, check the outputs directory f
 ## Useful links
 - [Map Reduce Collect Method](http://hadoop.apache.org/docs/r0.18.3/mapred_tutorial.html#OutputCollector)
 - [Hadoop Streaming options][1]
+- [Michael Noll Hadoop Streaming Tutorial](http://www.michael-noll.com/tutorials/writing-an-hadoop-mapreduce-program-in-python)
 
 [1]: http://hadoop.apache.org/docs/r1.0.4/streaming.html#More+usage+examples 
