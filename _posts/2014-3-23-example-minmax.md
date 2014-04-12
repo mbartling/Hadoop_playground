@@ -113,9 +113,27 @@ Next lets see if map works as expected (map should produce 2 lines for each inpu
 ```
 $ cat test_inputs.dat | ./map.py 
 ```
-The outputs should look something like this:
+The outputs should look something like this (But the numbers will be different):
 
-![alt text]( ../images/minmax-functest-map.png "Its a good practice to run this twice and make sure you get the same results")
+![alt text](https://github.com/mbartling/Hadoop_playground/raw/gh-pages/images/minmax-functest-map.png "Its a good practice to run this twice and make sure you get the same results")
+
+Now lets pretend we are Hadoop and sort the outputs.
+
+```
+$ cat test_inputs.dat | ./map.py | sort -n
+```
+Results in:
+![alt text](https://github.com/mbartling/Hadoop_playground/raw/gh-pages/images/minmax-functest-sort.png "Now things are starting to come together!")
+
+Finally, we run the reduce step
+```
+$ cat test_inputs.dat | ./map.py | sort -n | ./reduce.py
+```
+Results in:
+![alt text](https://github.com/mbartling/Hadoop_playground/raw/gh-pages/images/minmax-functest-reduce.png "That feeling when something does exactly what it is supposed to do! :P ")
+
+Now that we have a model working, we can either test our python code on the super computer or dive into the C method!
+
 
 ## C Implementation
 
