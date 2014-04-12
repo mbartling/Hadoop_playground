@@ -10,10 +10,9 @@
 #include <stdio.h>
 #include <limits.h>
 #include <float.h>
-#include <time.h>
+//#include <time.h>
 #include <stdlib.h>
 
-#define MAX_KEY_IN 256
 
 enum
 {
@@ -43,14 +42,6 @@ void myReduceLines(void)
 		//If we have moved onto the next key set then do this
 		if( prev_key && prev_key != key)
 		{
-//			if(prev_key == key_max)
-//			{
-//				printf("Max\t%lf\n", max_val);
-//			}
-//			else
-//			{
-//				printf("Min\t%lf\n", min_val);
-//			}
 
 			/* Update to new key set */
 			prev_key = key;
@@ -71,11 +62,10 @@ void myReduceLines(void)
 
 	printf("Max\t%lf\n", local_max_val);
 	printf("Min\t%lf\n", local_min_val);
-//	printf("%d\t%lf\n", key_max, max_val);
-//	printf("%d\t%lf\n", key_min, min_val);
 
 
-}// End myMapLines
+
+}// End myReduceLines
 
 int main(void)
 {
