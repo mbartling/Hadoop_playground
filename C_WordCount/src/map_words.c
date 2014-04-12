@@ -47,15 +47,20 @@ void myMapLines( void )
         {
             perror("Error reading stdin.");
         }
+        //While char exists
         while(line[idx])
         {
+            //Make everything lower case
             line[idx] = tolower(line[idx]);
+            //Replace all punctuation with space
             if(ispunct(line[idx]) || isdigit(line[idx]))
             {
                 line[idx] = ' ';
             }
             idx++;
         }
+        
+        //Reset the index
         idx = 0;
         while( sscanf(&line[idx] , "%s%n", word, &n) > 0)
         {
@@ -64,6 +69,7 @@ void myMapLines( void )
         }
         idx = 0;
     }
+    //For safety
     if(ferror(stdin))
     {
         perror("Error reading stdin.");
