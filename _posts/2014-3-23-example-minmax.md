@@ -419,7 +419,7 @@ $ gcc -Wall -o reduce reduce.c
 Run the functional tests like we did with python
 
 ```
-$ cat test_inputs.dat | ./map.py | sort -n | ./reduce.py
+$ cat test_inputs.dat | ./map | sort -n | ./reduce
 ```
 
 Compare the results, and then try running on the super computer!
