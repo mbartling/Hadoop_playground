@@ -37,6 +37,7 @@ void myMapLines(void)
 
 		/* Process each line separately */
 		pos = line;
+		/* position ourselves at the start of each number and move forward*/
 		for (pos = line; ; pos = end) {
 			val = strtod(pos, &end);
 			if (pos == end)
