@@ -15,19 +15,19 @@
 #define MAX_LINE_LEN 	200
 #define ZERO_BYTE 		0
 
-void ReadLines(void);
+void myReduceLines(void);
 
 extern int errno;
 int main(int argc, const char * argv[])
 {
 
-    ReadLines();
+    myReduceLines();
 
     exit(EXIT_SUCCESS);
 }
 
 
-void ReadLines( void )
+void myReduceLines( void )
 {
     char line[MAX_LINE_LEN];
     char word[MAX_LINE_LEN];
