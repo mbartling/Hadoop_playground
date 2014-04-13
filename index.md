@@ -5,6 +5,10 @@ layout: index
 Welcome to Hadoop playground!
 =================
 
+## Remote Access Using Windows
+More detailed instructions can be found [here](http://sc.tamu.edu/help/access/windows.php)
+
+First Download Putty. 
 
 General Hadoop Tips on EOS
 --------------------------
