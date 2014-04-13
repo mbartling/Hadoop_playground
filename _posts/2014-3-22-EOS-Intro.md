@@ -132,7 +132,7 @@ which should create the necessary files in your `~/.ssh` directory.
 Also don not forget to add your modules! i.e
 
 ```
-user@eos> modules add git
+user@eos> module add git
 ```
 ## Useful links
 - [EOS: Basic Information][1]
