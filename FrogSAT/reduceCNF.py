@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 import sys
 import os
-
+sys.path.append('.')
 literals = set()
 clauseList = []
 

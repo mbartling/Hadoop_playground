@@ -10,6 +10,8 @@ for line in f:
 	line.strip()
 	keyList.append(line)
 
+f.close()
+
 # Assume that there are no comment blocks or problem statements in this file
 for line in sys.stdin:
 	line = line.strip()
@@ -26,8 +28,10 @@ for line in sys.stdin:
 				keyS = keyS.strip('\n')
 				keyS = '{0}\t'.format(keyS)
 				print keyS + line
+                print >> sys.stderr, keyS + line
 			if ('-{0}'.format(key1) in line) or ('-{0}'.format(key2) in line):
 				keyS = ''.join(key)
 				keyS = keyS.strip('\n')
 				keyS = '{0}\t'.format(keyS)
 				print keyS + line
+                print >> sys.stderr, keyS + line

@@ -125,12 +125,12 @@ echo "##### Running FrogSAT"
 cp -f ./src/*.py .
 
 hadoop jar $HADOOP_STREAMING \
-	-mapper "./mapCNF.py" \
+	-mapper mapCNF.py \
 	-reducer NONE \
-    -file mapCNF.py \
-    -file reduceCNF.py \
-    -file minisat_static \
-    -file mapKeyList.txt \
+    -file $PBS_O_WORKDIR/mapCNF.py \
+    -file $PBS_O_WORKDIR/reduceCNF.py \
+    -file $PBS_O_WORKDIR/minisat_static \
+    -file $PBS_O_WORKDIR/mapKeyList.txt \
     -input $TAMUSC_USER_WORK_DIR/inputs/ \
 	-output $TAMUSC_USER_WORK_DIR/outputs/maponly
 echo "##### Finished running MapReduce job"
@@ -141,17 +141,17 @@ hadoop fs -get $TAMUSC_USER_WORK_DIR/outputs/maponly $PBS_O_WORKDIR/outputs/$PBS
 
 
 echo -e "\n\n\n\n\n" 
-hadoop jar $HADOOP_STREAMING \
-	-mapper "./mapCNF.py" \
-	-reducer "./reduceCNF.py" \
-    -file mapCNF.py \
-    -file reduceCNF.py \
-    -file minisat_static \
-    -file mapKeyList.txt \
-    -verbose \
-    -input $TAMUSC_USER_WORK_DIR/inputs \
-	-output $TAMUSC_USER_WORK_DIR/outputs/MR
-
+#hadoop jar $HADOOP_STREAMING \
+#	-mapper "./mapCNF.py" \
+#	-reducer "./reduceCNF.py" \
+#    -file mapCNF.py \
+#    -file reduceCNF.py \
+#    -file minisat_static \
+#    -file mapKeyList.txt \
+#    -verbose \
+#    -input $TAMUSC_USER_WORK_DIR/inputs \
+#	-output $TAMUSC_USER_WORK_DIR/outputs/MR
+#
 echo -e "\n\n\n\n\n" 
 # example of examining files on HDFS
 echo "##### Files on $HDFS_URL"
