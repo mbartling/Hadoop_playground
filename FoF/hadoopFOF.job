@@ -150,6 +150,8 @@ echo "##### Files on $HDFS_URL"
 hadoop fs -lsr $HDFS_URL
 # hadoop fs -lsr / # this would accomplish the same thing
 
+echo "#### Output of the Part"
+hadoop fs -cat $HDFS/outputs/maponly/*
 # example of copying files off of HDFS
 echo "##### Copying files from $HDFS_URL ($TAMUSC_USER_WORK_DIR) to $PBS_O_WORKDIR"
 mkdir -p outputs
@@ -160,7 +162,7 @@ if [ $INTERACTIVE -eq 1 ] ; then # pause here until user ends VNC
 fi
 
 echo "##### Collect Debug Info"
-get-hadoop-debug.sh
+./get-hadoop-debug.sh
 
 echo "##### Stop Cluster"
 stop-hadoop-cluster.sh

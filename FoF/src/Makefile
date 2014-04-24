@@ -17,9 +17,9 @@ OBJECTS = $(SOURCES:.c=.o)
 
 all: $(EXECUTABLES)
 
-reduce.out:
+reduce.out: reduce_friends.c
 	$(CC) $(CFLAGS) reduce.out reduce_friends.c
-map.out:
+map.out: map_friends.c
 	$(CC) $(CFLAGS) map.out map_friends.c
 
 #$(EXECUTABLE): $(OBJECTS)

@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_LINE_LEN 	200
+#define MAX_LINE_LEN 	10000
 #define ZERO_BYTE 		0
 
 void myMapLines(void);
@@ -61,10 +61,10 @@ void myMapLines( void )
         idx = 0;
 
         /*Read in string and count number of characters read*/
-        sscanf(&line[idx] , "%s%n", key, &n);
+        sscanf(&line[idx] , "%s %n", key, &n);
         idx += n;
         friend_offset = idx;
-        while( sscanf(&line[idx] , "%s%n", friend, &n) > 0)
+        while( sscanf(&line[idx] , "%s %n", friend, &n) > 0)
         {
             //Clear the output string
             //memset(output, '\0', 2*MAX_LINE_LEN);
