@@ -41,22 +41,25 @@ for line in sys.stdin:
         # MiniSAT determines the number of literals and compares it to our problem statement. Note miniSat is lazy and looks for the max(abs) of the literals.
         numLits = max(literals)
         filenameTxt = prevKey.replace(' ', '-')
-        filename = '{0}.cnf'.format(filenameTxt)
-        filenameout = '{0}-MiniSat.out'.format(filenameTxt)        
+        filename = '%s.cnf' %(filenameTxt)
+        filenameout = '%s-MiniSat.out' %(filenameTxt)        
         # Open the file to work on
         f = open(filename, 'w')
 
         # write out problem statement
         # p cnf numliterals numClauses\n
         #problem  = ('p cnf', numLits, len(clauseList), '\n')
-        problem = 'p cnf {0} {1}\n'.format(numLits, len(clauseList))
+        #problem = 'p cnf {0} {1}\n'.format(numLits, len(clauseList))
+        problem = 'p cnf %(lits)d %(claus)d\n' % {'lits' : numLits, 'claus': len(clauseList)}
         # MiniSAT doesnt need this, see www.msoos.org/minisat-faq/
         f.write(problem)
 
         # Write the clauses
         #f.writelines(clauseList)
         for entry in clauseList:
-            f.write('{0}\n'.format(entry))
+            stuff = '%s\n' % (entry)
+            f.write(stuff)
+            #f.write('{0}\n'.format(entry))
         
         f.close()
         
@@ -81,21 +84,26 @@ for line in sys.stdin:
 #numLits = len(literals)/2 # Should be even number
 numLits = max(literals)
 filenameTxt = key.replace(' ', '-')
-filename = '{0}.cnf'.format(filenameTxt)
-filenameout = '{0}-MiniSat.out'.format(filenameTxt)        
+#filename = '{0}.cnf'.format(filenameTxt)
+#filenameout = '{0}-MiniSat.out'.format(filenameTxt)        
+filename = '%s.cnf' %(filenameTxt)
+filenameout = '%s-MiniSat.out' %(filenameTxt)        
 # Open the file to work on
 f = open(filename, "w")
 
 # write out problem statement
 # p cnf numliterals numClauses\n
 #problem  = ('p cnf', numLits, len(clauseList), '\n')
-problem = 'p cnf {0} {1}\n'.format(numLits, len(clauseList))
+#problem = 'p cnf {0} {1}\n'.format(numLits, len(clauseList))
+problem = 'p cnf %(lits)d %(claus)d\n' % {'lits' : numLits, 'claus': len(clauseList)}
 f.write(problem)
 
 # Write the clauses
 #f.writelines(clauseList)
 for entry in clauseList:
-    f.write('{0}\n'.format(entry))
+    stuff = '%s\n' % (entry)
+    #f.write('{0}\n'.format(entry))
+    f.write(stuff)
     
 f.close()
 

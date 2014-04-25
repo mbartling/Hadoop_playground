@@ -107,7 +107,7 @@ hadoop dfs -mkdir $TAMUSC_USER_WORK_DIR/inputs
 # cd $SCRATCH
 cd $PBS_O_WORKDIR # change directory to where we started
 #hadoop fs -put ./inputs/file01 $HDFS_URL/inputs/.
-hadoop fs -copyFromLocal ./inputs/*.* $TAMUSC_USER_WORK_DIR/inputs
+hadoop fs -copyFromLocal ./inputs/*.cnf $TAMUSC_USER_WORK_DIR/inputs
 
 echo "##### Printing Environment variables"
 env
@@ -133,6 +133,8 @@ hadoop jar $HADOOP_STREAMING \
     -file $PBS_O_WORKDIR/mapKeyList.txt \
     -input $TAMUSC_USER_WORK_DIR/inputs/ \
 	-output $TAMUSC_USER_WORK_DIR/outputs/maponly
+
+echo -e "\n\n\n\n\n" 
 echo "##### Finished running MapReduce job"
 
 echo -e "\n\n\n\n\n" 
@@ -141,17 +143,17 @@ hadoop fs -get $TAMUSC_USER_WORK_DIR/outputs/maponly $PBS_O_WORKDIR/outputs/$PBS
 
 
 echo -e "\n\n\n\n\n" 
-#hadoop jar $HADOOP_STREAMING \
-#	-mapper "./mapCNF.py" \
-#	-reducer "./reduceCNF.py" \
-#    -file mapCNF.py \
-#    -file reduceCNF.py \
-#    -file minisat_static \
-#    -file mapKeyList.txt \
-#    -verbose \
-#    -input $TAMUSC_USER_WORK_DIR/inputs \
-#	-output $TAMUSC_USER_WORK_DIR/outputs/MR
-#
+hadoop jar $HADOOP_STREAMING \
+	-mapper "./mapCNF.py" \
+	-reducer "./reduceCNF.py" \
+    -file mapCNF.py \
+    -file reduceCNF.py \
+    -file minisat_static \
+    -file mapKeyList.txt \
+    -verbose \
+    -input $TAMUSC_USER_WORK_DIR/inputs \
+	-output $TAMUSC_USER_WORK_DIR/outputs/MR
+
 echo -e "\n\n\n\n\n" 
 # example of examining files on HDFS
 echo "##### Files on $HDFS_URL"
